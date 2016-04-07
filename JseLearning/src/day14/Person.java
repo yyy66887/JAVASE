@@ -5,9 +5,13 @@ public class Person {
 		
 	}
 	Person(Person p ){
-		this.setName(p.getName());
-		this.setAge(p.getAge());
+		this.name = p.getName();
+		this.age = p.getAge();
 
+	}
+	Person(String name,String age){
+		this.age = age;
+		this.name = name;
 	}
 
 	private String name;
@@ -29,12 +33,20 @@ public class Person {
 		return "Person [name=" + name + ", age=" + age + "]";
 	}
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((age == null) ? 0 : age.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Person))
 			return false;
 		Person other = (Person) obj;
 		if (age == null) {
@@ -49,5 +61,8 @@ public class Person {
 			return false;
 		return true;
 	}
+	
+	
+	
 	
 }
